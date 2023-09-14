@@ -9,7 +9,7 @@ jobs:
         name: Close Issue
         
         uses: peter-evans/close-issue@v3
-        token: ${{secrets.TOKEN_PAT}}
+      #  token: ${{secrets.TOKEN_PAT}}
         with:
           comment: |
             Issue title must start with 'ABC-'.
