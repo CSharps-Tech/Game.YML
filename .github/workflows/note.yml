@@ -1,4 +1,16 @@
-    - name: Close Issue
-      run: gh issue close --comment "Auto-closing issue" "1"
-      env:
-        GH_TOKEN: ${{ secrets.GETTA }}
+on:
+  issues:
+    types: [opened]
+jobs:
+  titlePrefixCheck:
+    runs-on: ubuntu-latest
+    steps:
+      - if: startsWith(github.event.issue.title, 'ABC-') != 'true'
+        name: Close Issue
+        
+        uses: peter-evans/close-issue@v3
+        token: ${{secrets.TOKEN_PAT}}
+        with:
+          comment: |
+            Issue title must start with 'ABC-'.
+            Auto-closing this issue.
